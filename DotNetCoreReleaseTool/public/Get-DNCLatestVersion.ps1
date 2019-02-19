@@ -5,13 +5,13 @@ function Get-DNCLatestVersion {
         $MajorVersion = '2',
         $MinorVersion = '2'
     )
-    
+
     begin {
     }
-    
+
     process {
         $version = "$MajorVersion.$MinorVersion*"
-        $data = Get-Data 
+        $data = Get-Data
         $latestRelease = $data | Where-Object {$_.'version-runtime' -like $version} | Select-Object -First 1
         [pscustomobject]@{
             ReleaseDate    = $latestRelease.date
@@ -23,7 +23,7 @@ function Get-DNCLatestVersion {
 
 
     }
-    
+
     end {
     }
 }
