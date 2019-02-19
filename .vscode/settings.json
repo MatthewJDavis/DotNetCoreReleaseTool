@@ -3,5 +3,6 @@
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "files.defaultLanguage": "powershell",
-    "powershell.codeFormatting.preset": "OTBS"    
+    "powershell.codeFormatting.preset": "OTBS",
+    "files.trimTrailingWhitespace": true
 }
