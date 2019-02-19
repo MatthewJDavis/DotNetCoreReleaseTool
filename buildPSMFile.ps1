@@ -35,10 +35,11 @@ Foreach ($PublicFunction in $PublicFunctions) {
 Write-Verbose -Message "Found $($PublicFunctions.Count) Public functions and added them to the psm1."
 
 $PublicFunctionNames = $PublicFunctions |
-    Select-String -Pattern 'Function (\w+-\w+)$' -AllMatches |
+    Select-String -Pattern 'Function (\w+-\w+) {' -AllMatches |
     Foreach-Object {
     $_.Matches.Groups[1].Value
 }
+
 Write-Verbose -Message "Making $($PublicFunctionNames.Count) functions available via Export-ModuleMember"
 
 "Export-ModuleMember -Function {0}" -f ($PublicFunctionNames -join ',') | Add-Content $DestinationModule
