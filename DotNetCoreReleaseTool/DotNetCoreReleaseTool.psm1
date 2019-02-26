@@ -3,7 +3,7 @@ function Get-Data {
     param (
         $uri = 'https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases.json'
     )
-       Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
+    Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
 }
 function Get-DNCLatestVersion {
     [CmdletBinding()]
@@ -12,13 +12,13 @@ function Get-DNCLatestVersion {
         $MajorVersion = '2',
         $MinorVersion = '2'
     )
-    
+
     begin {
     }
-    
+
     process {
         $version = "$MajorVersion.$MinorVersion*"
-        $data = Get-Data 
+        $data = Get-Data
         $latestRelease = $data | Where-Object {$_.'version-runtime' -like $version} | Select-Object -First 1
         [pscustomobject]@{
             ReleaseDate    = $latestRelease.date
@@ -30,7 +30,7 @@ function Get-DNCLatestVersion {
 
 
     }
-    
+
     end {
     }
 }
