@@ -3,5 +3,5 @@ function Get-Data {
     param (
         $uri = 'https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases.json'
     )
-       Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
+    Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
 }
