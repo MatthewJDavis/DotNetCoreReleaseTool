@@ -34,5 +34,22 @@ Describe 'Get-DNCLatestVersion' {
             $latest = Get-DNCLatestVersion
             $latest.versionRuntime -like "2.2*" | Should Be $true
         }
+        it "returns version 2.2 when major version 2 in input and no minor version is specified" {
+            $latest = Get-DNCLatestVersion -MajorVersion 2
+            $latest.versionRuntime -like "2.2*" | Should Be $true
+        }
+        Mock Get-Data -MockWith { [PSCustomObject]@{
+                'version-runtime' = '3.2'
+                'version-sdk'     = '3.2.104'
+                'date'            = '2019-02-18'
+                'lts-runtime'     = 'false'
+                'lts-sdk'         = 'false'
+            }
+        }
+        it "returns version 3.2 when Major version 3 input and no minor version is specified" {
+            $latest = Get-DNCLatestVersion -MajorVersion 3
+            $latest.versionRuntime -like "3.2*" | Should Be $true
+        }
     }
+
 }
